@@ -1,7 +1,5 @@
 # Data Integration & ETL Microservice
 
-[![CI](https://github.com/shailsujeebun/data-integration-etl-microservice/actions/workflows/ci.yml/badge.svg)](https://github.com/shailsujeebun/data-integration-etl-microservice/actions/workflows/ci.yml)
-
 Production-style ETL platform with multi-source ingestion, transformation, idempotent upsert loading, dynamic scheduling, and a React operations dashboard.
 
 ## 60-Second Pitch
