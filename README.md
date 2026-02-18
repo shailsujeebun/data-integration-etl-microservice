@@ -25,7 +25,6 @@ Open:
 
 - Dashboard: `http://localhost`
 - API health: `http://localhost:8080/actuator/health`
-- API docs: `docs/API.md`
 
 ## Recruiter Demo Mode
 
@@ -51,9 +50,7 @@ In demo mode:
 
 ## Screenshots
 
-Screenshot placeholders are prepared in `assets/screenshots/README.md`.
-
-Recommended captures:
+Recommended captures (save in `assets/screenshots/`):
 
 - `assets/screenshots/dashboard.png`
 - `assets/screenshots/sources.png`
@@ -93,7 +90,6 @@ Recommended captures:
 
 ## Deployment
 
-- Railway guide: `docs/RAILWAY_DEPLOY.md`
 - Docker compose stack: `infra/docker/docker-compose.yml`
 
 ## Tech Stack
