@@ -1,0 +1,60 @@
+spring:
+  datasource:
+    # V5: No hardcoded credential fallbacks. If env vars are missing the app fails fast
+    # at startup with a clear error rather than silently using known-default credentials.
+    url: ${DATABASE_URL}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      connection-timeout: 30000
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc:
+          batch_size: 500
+          time_zone: UTC
+        order_inserts: true
+        order_updates: true
+        generate_statistics: false
+    open-in-view: false
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: false
+    out-of-order: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        # Only expose health — metrics and info removed (information disclosure reduction)
+        include: health
+  endpoint:
+    health:
+      # never: hides DB connection details, disk path, hostname from the health response
+      show-details: never
+
+logging:
+  config: classpath:logback-spring.xml
+
+server:
+  port: ${PORT:8080}
+  shutdown: graceful
+  compression:
+    enabled: true
+    mime-types: application/json,text/plain
+
+app:
+  cors:
+    # Comma-separated list. Example:
+    # APP_CORS_ALLOWED_ORIGINS=https://etl-demo.example.com,https://api-demo.example.com
+    allowed-origins: ${APP_CORS_ALLOWED_ORIGINS:http://localhost:5173,http://localhost:80,http://localhost}
+  security:
+    admin:
+      username: ${APP_ADMIN_USERNAME}
+      password: ${APP_ADMIN_PASSWORD}

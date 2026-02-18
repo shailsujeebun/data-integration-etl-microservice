@@ -1,0 +1,198 @@
+{
+  "info": {
+    "name": "Data Integration ETL Microservice",
+    "description": "Complete API collection for the ETL Microservice. Run docker-compose first, then use these requests.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/actuator/health",
+            "description": "Check if the application is running"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Sources",
+      "item": [
+        {
+          "name": "List All Sources",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/sources"
+          }
+        },
+        {
+          "name": "Get Source by ID",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/sources/1"
+          }
+        },
+        {
+          "name": "Create CSV Source",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/sources",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"my-products-csv\",\n  \"type\": \"CSV\",\n  \"connectionString\": \"/app/sample-data/sample.csv\",\n  \"scheduleCron\": \"0 0/30 * * * ?\",\n  \"isActive\": true\n}"
+            }
+          }
+        },
+        {
+          "name": "Create API Source (JSONPlaceholder)",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/sources",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"jsonplaceholder-todos\",\n  \"type\": \"API\",\n  \"connectionString\": \"https://jsonplaceholder.typicode.com/todos\",\n  \"scheduleCron\": \"0 0 * * * ?\",\n  \"isActive\": true\n}"
+            }
+          }
+        },
+        {
+          "name": "Create API Source (with Bearer Auth)",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/sources",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"secure-api-source\",\n  \"type\": \"API\",\n  \"connectionString\": \"https://api.example.com/data\",\n  \"authConfig\": { \"type\": \"bearer\", \"token\": \"your-token-here\" },\n  \"scheduleCron\": \"0 0 2 * * ?\",\n  \"isActive\": true\n}"
+            }
+          }
+        },
+        {
+          "name": "Update Source",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/api/sources/1",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"sample-products-csv\",\n  \"type\": \"CSV\",\n  \"connectionString\": \"/app/sample-data/sample.csv\",\n  \"scheduleCron\": \"0 0/15 * * * ?\",\n  \"isActive\": true\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Source",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/sources/99"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Jobs",
+      "item": [
+        {
+          "name": "Trigger Job (Source 1)",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/jobs/trigger",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sourceConfigId\": 1\n}"
+            }
+          }
+        },
+        {
+          "name": "Trigger Job (Source 2 - JSONPlaceholder Posts)",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/jobs/trigger",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sourceConfigId\": 2\n}"
+            }
+          }
+        },
+        {
+          "name": "List Job History",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/jobs?page=0&size=20",
+              "query": [
+                { "key": "page", "value": "0" },
+                { "key": "size", "value": "20" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Job Detail",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/jobs/1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Data",
+      "item": [
+        {
+          "name": "Get All Unified Data",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/data?page=0&size=20",
+              "query": [
+                { "key": "page", "value": "0" },
+                { "key": "size", "value": "20" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Filter by Source Type (CSV)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/data?sourceType=CSV&page=0&size=20",
+              "query": [
+                { "key": "sourceType", "value": "CSV" },
+                { "key": "page", "value": "0" },
+                { "key": "size", "value": "20" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Filter by Date Range",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/data?from=2024-01-01T00:00:00Z&to=2024-12-31T23:59:59Z&page=0",
+              "query": [
+                { "key": "from", "value": "2024-01-01T00:00:00Z" },
+                { "key": "to", "value": "2024-12-31T23:59:59Z" },
+                { "key": "page", "value": "0" }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

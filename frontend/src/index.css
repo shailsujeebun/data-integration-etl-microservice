@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-carbon: #111827;
+  --color-steel: #374151;
+  --color-frost: #F3F4F6;
+  --color-mint: #34D399;
+  --color-coral: #FB7185;
+}
+
+body {
+  @apply bg-carbon text-frost font-body;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-headline;
+}
+
+code, pre, .mono {
+  @apply font-mono;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-steel;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-steel-light rounded-full;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-frost-dim;
+}

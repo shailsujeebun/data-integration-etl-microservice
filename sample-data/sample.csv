@@ -1,0 +1,9 @@
+id,name,category,amount,created_date,email,status
+1,Alice Johnson,Electronics,299.99,01/15/2024,alice@example.com,active
+2,Bob Smith,Clothing,49.50,2024-01-16,bob@example.com,active
+3,Carol White,Electronics,899.00,16-01-2024,carol@example.com,inactive
+,CORRUPTED_RECORD,Books,,bad-date,,
+5,Dave Brown,Furniture,1200.00,01/20/2024,dave@example.com,active
+6,Eve Martinez,Electronics,549.00,2024-01-21,eve@example.com,active
+7,Frank Lee,Clothing,89.99,01/22/2024,frank@example.com,active
+8,Grace Kim,Books,34.99,23-01-2024,grace@example.com,active

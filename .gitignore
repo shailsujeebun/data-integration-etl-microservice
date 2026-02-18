@@ -1,0 +1,34 @@
+# Environment secrets
+.env
+*.env.local
+
+# Java / Maven
+target/
+*.class
+*.jar
+*.war
+.mvn/wrapper/maven-wrapper.jar
+
+# Node / npm
+node_modules/
+dist/
+.vite/
+frontend/dist/
+
+# IDE
+.idea/
+*.iml
+.vscode/settings.json
+*.suo
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker volumes
+pgdata/
+
+# Logs
+*.log
+logs/

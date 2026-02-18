@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir:*)",
+      "Bash(ls:*)",
+      "Bash(find:*)",
+      "Bash(Get-ChildItem -Recurse \"D:\\\\Work\\\\backend etc\\\\2. Data Integration & ETL Microservice\" -File)",
+      "Bash(Where-Object { $_Extension -in '.java', '.xml', '.yml', '.yaml', '.sql', '.tsx', '.ts', '.json', '.conf', '.md', '.css', '.html', '.js', '.gitignore', '.env.example' })",
+      "Bash(Select-Object FullName)",
+      "Bash(Sort-Object FullName)",
+      "Bash(curl:*)",
+      "Bash(docker-compose:*)",
+      "Bash(python -m json.tool:*)",
+      "Bash(cat:*)",
+      "Bash(# V8: Page size cap — request size=999999, should be silently clamped to 100 curl -s \"\"http://localhost:8080/api/jobs?page=0&size=999999\"\" | python -m json.tool)",
+      "Bash(Start-Sleep 20)",
+      "Bash(python3:*)",
+      "Bash(docker exec:*)"
+    ]
+  }
+}
